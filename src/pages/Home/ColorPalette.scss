@@ -1,0 +1,59 @@
+@import '../../App.scss';
+
+main {
+  div {
+    .colors {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      justify-content: start;
+      align-items: center;
+      @media (max-width: 1000px) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin: auto;
+      }
+      @media (max-width: 550px) {
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+      }
+      .color{
+        height: 25rem;
+        flex: 1;
+        width: 100%;
+        min-width: 10rem;
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+        @media (max-width: 1000px) {
+          flex: 1;
+          justify-content: center;
+        }
+        span{
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translate(-50%);
+          width: 100%;
+          padding: .5rem;
+          opacity: 0;
+          background-color: rgba(255, 255, 255, 0.8);
+          transition: all 200ms;
+          color: $secondary-color;
+        }
+      }
+      .color:hover {
+        @media (min-width: 550px) {
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
+          z-index: 2;
+        }
+        span{
+         opacity: 1; 
+        }
+      }
+    }
+  }
+}
