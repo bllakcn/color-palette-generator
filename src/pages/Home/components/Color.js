@@ -1,9 +1,10 @@
-import React from 'react'
 
-export default function Color({ color }) {
+export default function Color({ color, handleClick }) {
   return (
-    <li data-color={`#${color}`} className='color' style={{backgroundColor: '#' + color}}>
-      <span>{'#'+color}</span>
-    </li>
+    <>
+      <li onClick={handleClick} data-color={`#${color}`} className='color' style={{backgroundColor: '#' + color}}>
+        <span>{'#'+color}</span>
+      </li>
+    </>
   )
 }
