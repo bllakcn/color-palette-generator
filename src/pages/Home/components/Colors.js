@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Color from './Color'
 import ColorScheme from "color-scheme"
 
-export default function Colors() {
+export default function Colors({ scheme, variation }) {
   const [colorPalette, setColorPalette] = useState([])
   const [copiedColor, setCopiedColor] = useState('')
   const [isNotification, setIsNotification] = useState(false)
+  const [schemeOption, setSchemeOption] = useState('triade')
+  const [variationOption,  setVariationOption] = useState('soft')
 
   const handleClick = (e) => {
     const colorCode = e.target.getAttribute('data-color')
@@ -18,32 +20,40 @@ export default function Colors() {
     }, 1200)
   }
   
-  const generateColors = () => {
+  const generateColors = useCallback(() => {
     const scheme =new ColorScheme()
     scheme.from_hue(Math.random() * 1000)
     .distance(.5)    
-    .scheme('triade')   
-    .variation('soft')
-    
+    .scheme(schemeOption) 
+    .variation(variationOption)
+
     const colors = scheme.colors()
     colors.sort(() => Math.random() - 0.5)
     const colorPalette = colors.slice(0, 5)
-    
-    return colorPalette
-  }
-  
+
+    setColorPalette(colorPalette)
+  }, [schemeOption, variationOption])
+
   useEffect(() => {
-    setColorPalette(generateColors())
-  }, [])
+    generateColors()
+  }, [generateColors])
+
+  useEffect(() => {
+    setSchemeOption(scheme)
+    setVariationOption(variation)
+    generateColors()
+  }, [scheme, variation, generateColors])
   
+
   const handleGenerate = () => {
-    setColorPalette(generateColors())
+    generateColors()
   }
   
+  //causes excessive render 
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
       if(e.key === " ") {
-        setColorPalette(generateColors())
+        generateColors()
       }
     })
   })
@@ -60,7 +70,8 @@ export default function Colors() {
       </ul>
       <div className='generate-colors'>
         <button onClick={handleGenerate} className='btn'>Generate colors!</button>
-        <span className='info'>or press <b>Space</b> to generate colors</span>
+        <span className='info'>or press <b>Space</b> to generate colors.</span>
+        <span className='info'>Click on colors to copy to your clipboard.</span>
       </div>
     </div>
   )

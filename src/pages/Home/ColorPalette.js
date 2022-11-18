@@ -1,9 +1,19 @@
 import './ColorPalette.scss'
 import Colors from './components/Colors'
 import Settings from './components/Settings'
+import { useState } from 'react'
 
 export default function ColorPalette() {
+  const [scheme, setScheme] = useState('triade')
+  const [variation, setVariation] = useState('soft')
 
+  const handleScheme = (e) => {
+    setScheme(e.target.value)
+  }
+  const handleVariation = (e) => {
+    setVariation(e.target.value)
+  }
+  
   return (
     <div className='color-palette-container'>
       <div className='content-left'>
@@ -12,10 +22,10 @@ export default function ColorPalette() {
         </header>
         <main>
           <div className='color-palette'>
-            <Colors />
+            <Colors scheme={scheme} variation={variation} />
           </div>  
         </main>
-        <Settings/>
+        <Settings handleScheme={handleScheme} handleVariation={handleVariation}/>
       </div>
     </div>
   )
