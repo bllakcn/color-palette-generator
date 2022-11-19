@@ -57,6 +57,10 @@ export default function Colors({ scheme, variation }) {
       }
     })
   })
+
+  const handleSave = () => {
+    localStorage.setItem(`scheme_${localStorage.length}`, colorPalette)
+  }
   
   return (
     <div>
@@ -72,6 +76,7 @@ export default function Colors({ scheme, variation }) {
         <button onClick={handleGenerate} className='btn'>Generate colors!</button>
         <span className='info'>or press <b>Space</b> to generate colors.</span>
         <span className='info'>Click on colors to copy to your clipboard.</span>
+        <button onClick={handleSave} className='btn'>Save the scheme!</button>
       </div>
     </div>
   )
