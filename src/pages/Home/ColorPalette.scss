@@ -6,10 +6,27 @@
   .sidebar-container {
     z-index: 4;
     padding: .5rem 3rem 0 .5rem;
-    position: fixed;
+    position: absolute;
     left: 0;
     background-color: $second-bg-color;
     text-align: left;
+
+    .color-schemes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      .color-scheme {
+        display: flex;
+        list-style: none;
+
+        .color {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
   }
   
   .content-main {

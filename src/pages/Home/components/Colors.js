@@ -59,7 +59,8 @@ export default function Colors({ scheme, variation }) {
   })
 
   const handleSave = () => {
-    localStorage.setItem(`scheme_${localStorage.length}`, colorPalette)
+    localStorage.setItem(`scheme_${localStorage.length}`, JSON.stringify(colorPalette))
+    console.log(colorPalette)
   }
   
   return (
