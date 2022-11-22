@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Colors from './components/Colors'
 import Settings from './components/Settings'
 import Sidebar from './components/Sidebar'
@@ -8,18 +8,46 @@ export default function ColorPalette() {
   const [scheme, setScheme] = useState('triade')
   const [variation, setVariation] = useState('soft')
   const [isSavedSchemesOpen, setIsSavedSchemesOpen] = useState(false)
-
+  const [savedSchemes, setSavedSchemes] = useState([])
+  const [selectedScheme, setSelectedScheme] = useState(null)
+  let lengthOfStorage = localStorage.length
+  
+  
+  const handleReceived = () => {
+    setSelectedScheme(null)
+  }
+  //open the selected saved scheme
+  const handleSelectedScheme = (e) => {
+    setSelectedScheme(e.target.parentNode.id)
+    setIsSavedSchemesOpen(false)
+  }
+  //close the saved schemes tab when clicked outside
+  const handleCloseSchemes = () => {
+    if(isSavedSchemesOpen){
+      setIsSavedSchemesOpen(false)
+    }
+  }
+  //handle settings
   const handleScheme = (e) => {
     setScheme(e.target.value)
   }
   const handleVariation = (e) => {
     setVariation(e.target.value)
   }
+
+  //get the locally saved schemes
+  useEffect(() => {
+    setSavedSchemes([])
+    for(let i = 0; i < lengthOfStorage; i++){
+      const currentScheme = JSON.parse(localStorage.getItem(`scheme_${i}`))
+      setSavedSchemes(curr => [...curr, currentScheme])
+    }
+  }, [lengthOfStorage])
   
   return (
     <div className='color-palette-container'>
-      {isSavedSchemesOpen && <Sidebar/>}
-      <div className='content-main'>
+      {isSavedSchemesOpen && <Sidebar handleSelectedScheme={handleSelectedScheme} savedSchemes={savedSchemes}/>}
+      <div onClick={handleCloseSchemes} className='content-main'>
         <header>
           {!isSavedSchemesOpen ? (
             <svg onClick={() => setIsSavedSchemesOpen(curr => !curr)} xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z"/></svg>
@@ -30,7 +58,7 @@ export default function ColorPalette() {
         </header>
         <main>
           <div className='color-palette'>
-            <Colors scheme={scheme} variation={variation} />
+            <Colors scheme={scheme} variation={variation} selectedScheme={selectedScheme} handleReceived={handleReceived}/>
           </div>  
         </main>
         <Settings handleScheme={handleScheme} handleVariation={handleVariation}/>

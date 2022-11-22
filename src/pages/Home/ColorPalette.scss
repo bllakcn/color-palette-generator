@@ -5,11 +5,14 @@
 
   .sidebar-container {
     z-index: 4;
-    padding: .5rem 3rem 0 .5rem;
+    width: 300px;
+    padding: .5rem 2rem 2rem 1rem;
     position: absolute;
     left: 0;
     background-color: $second-bg-color;
     text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
 
     .color-schemes {
       list-style: none;
@@ -17,15 +20,50 @@
       flex-direction: column;
       gap: .5rem;
 
-      .color-scheme {
+      li {
         display: flex;
-        list-style: none;
+        align-items: center;
 
-        .color {
-          width: 50px;
-          height: 50px;
+        .call-action-delete {
+          transform: scaleY(.6);
+          padding: .3rem;
+          cursor: pointer;
+        }
+
+        .color-scheme {
+          position: relative;
+          display: flex;
+          list-style: none;
+          align-items: center;
+          gap: 1px;
+          cursor: pointer;
+          
+          &:hover {
+            filter: brightness(.8);
+  
+            .call-action-open {
+              display: block;
+            }
+          }
+  
+          .call-action-open{
+            display: none;
+            position: absolute;
+            font-weight: 600;
+            font-size: 1.5rem;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+  
+          .color {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000 ;
+          }
         }
       }
+      
     }
   }
   
@@ -50,7 +88,7 @@
         fill: $primary-color;
         cursor: pointer;
         &.close-btn {
-          left: 13rem;
+          left: 13.3rem;
           fill: $secondary-color;
         }
       }

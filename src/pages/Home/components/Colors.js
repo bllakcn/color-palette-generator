@@ -2,13 +2,27 @@ import { useCallback, useEffect, useState } from 'react'
 import Color from './Color'
 import ColorScheme from "color-scheme"
 
-export default function Colors({ scheme, variation }) {
+export default function Colors({ scheme, variation, selectedScheme, handleReceived }) {
   const [colorPalette, setColorPalette] = useState([])
   const [copiedColor, setCopiedColor] = useState('')
   const [isNotification, setIsNotification] = useState(false)
   const [schemeOption, setSchemeOption] = useState('triade')
   const [variationOption,  setVariationOption] = useState('soft')
+  const [localScheme, setLocalScheme] = useState([])
 
+  //get the local scheme to a state
+  useEffect(() => {
+    setLocalScheme(JSON.parse(localStorage.getItem(`scheme_${selectedScheme}`)))
+  }, [selectedScheme])
+
+  //set the color scheme to the selected local scheme
+  useEffect(() => {
+    if(localScheme !== null){
+      setColorPalette(localScheme)
+    }
+  },[localScheme])
+
+  //copy color code to clipboard
   const handleClick = (e) => {
     const colorCode = e.target.getAttribute('data-color')
     navigator.clipboard.writeText(colorCode)
@@ -20,7 +34,9 @@ export default function Colors({ scheme, variation }) {
     }, 1200)
   }
   
+  //generate colors
   const generateColors = useCallback(() => {
+    handleReceived()
     const scheme =new ColorScheme()
     scheme.from_hue(Math.random() * 1000)
     .distance(.5)    
@@ -34,21 +50,19 @@ export default function Colors({ scheme, variation }) {
     setColorPalette(colorPalette)
   }, [schemeOption, variationOption])
 
+  //generate colors with the first render
   useEffect(() => {
     generateColors()
   }, [generateColors])
 
+  //generate colors if there is a change in the settings
   useEffect(() => {
     setSchemeOption(scheme)
     setVariationOption(variation)
     generateColors()
   }, [scheme, variation, generateColors])
   
-
-  const handleGenerate = () => {
-    generateColors()
-  }
-  
+  //generate colors when pressed space
   //causes excessive render 
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
@@ -58,6 +72,7 @@ export default function Colors({ scheme, variation }) {
     })
   })
 
+  //save the scheme to the localStorage
   const handleSave = () => {
     localStorage.setItem(`scheme_${localStorage.length}`, JSON.stringify(colorPalette))
     console.log(colorPalette)
@@ -74,7 +89,7 @@ export default function Colors({ scheme, variation }) {
         ))}
       </ul>
       <div className='generate-colors'>
-        <button onClick={handleGenerate} className='btn'>Generate colors!</button>
+        <button onClick={generateColors} className='btn'>Generate colors!</button>
         <span className='info'>or press <b>Space</b> to generate colors.</span>
         <span className='info'>Click on colors to copy to your clipboard.</span>
         <button onClick={handleSave} className='btn'>Save the scheme!</button>

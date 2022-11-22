@@ -11,6 +11,9 @@ function App() {
         <Routes>
           <Route element={<ColorPalette/>} path='/' />
         </Routes>
+        <footer>
+          <span>Coded with ❤ by <a href="https://bilalakcan.netlify.app/" target="_blank"  rel="noreferrer">Bilal</a></span>
+        </footer>
       </BrowserRouter>
     </div>
   );
