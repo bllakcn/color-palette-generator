@@ -4,6 +4,8 @@
 
 #### [Try it here!](https://colpal-generatecolors.netlify.app/)
 
+##### Powered by [color-scheme.js](https://github.com/c0bra/color-scheme-js)
+
 <details><summary>Create React App</summary>
 
 # Getting Started with Create React App
