@@ -64,12 +64,12 @@ export default function Colors({ scheme, variation, selectedScheme }) {
   //generate colors when pressed space
   //causes excessive render 
   useEffect(() => {
-    window.addEventListener('keydown', (e) => {
-      if(e.key === " ") {
+    window.addEventListener('keyup', (e) => {
+      if(e.code === "Space") {
         generateColors()
       }
     })
-  })
+  },[generateColors])
 
   //save the scheme to the localStorage
   const handleSave = () => {
