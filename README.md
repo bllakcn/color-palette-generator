@@ -1,7 +1,10 @@
-# The ColPol
-### Generate & save cool color palettes easy
+# The ColPol Lightweight Color Generator
 
-<!-- #### [Try it here!](https://project-management-dfe87.web.app//) -->
+### Generate & save cool color palettes on your browser easy
+
+#### [Try it here!](https://colpal-generatecolors.netlify.app/)
+
+<details>
 
 # Getting Started with Create React App
 
@@ -73,3 +76,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+</details>
