@@ -1,10 +1,10 @@
-# The ColPol Lightweight Color Generator
+# The ColPal Lightweight Color Generator
 
 ### Generate & save cool color palettes on your browser easy
 
 #### [Try it here!](https://colpal-generatecolors.netlify.app/)
 
-<details>
+<details><summary>Create React App</summary>
 
 # Getting Started with Create React App
 
