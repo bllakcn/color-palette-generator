@@ -1,3 +1,8 @@
+# The ColPol
+### Generate & save cool color palettes easy
+
+<!-- #### [Try it here!](https://project-management-dfe87.web.app//) -->
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

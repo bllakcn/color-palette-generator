@@ -12,10 +12,6 @@ export default function ColorPalette() {
   const [selectedScheme, setSelectedScheme] = useState(null)
   let lengthOfStorage = localStorage.length
   
-  
-  const handleReceived = () => {
-    setSelectedScheme(null)
-  }
   //open the selected saved scheme
   const handleSelectedScheme = (e) => {
     setSelectedScheme(e.target.parentNode.id)
