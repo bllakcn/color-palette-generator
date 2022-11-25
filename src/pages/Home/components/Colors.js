@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Color from './Color'
 import ColorScheme from "color-scheme"
 
-export default function Colors({ scheme, variation, selectedScheme, handleReceived }) {
+export default function Colors({ scheme, variation, selectedScheme }) {
   const [colorPalette, setColorPalette] = useState([])
   const [copiedColor, setCopiedColor] = useState('')
   const [isNotification, setIsNotification] = useState(false)
@@ -36,7 +36,6 @@ export default function Colors({ scheme, variation, selectedScheme, handleReceiv
   
   //generate colors
   const generateColors = useCallback(() => {
-    handleReceived()
     const scheme =new ColorScheme()
     scheme.from_hue(Math.random() * 1000)
     .distance(.5)    

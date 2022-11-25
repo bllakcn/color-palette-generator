@@ -58,7 +58,7 @@ export default function ColorPalette() {
         </header>
         <main>
           <div className='color-palette'>
-            <Colors scheme={scheme} variation={variation} selectedScheme={selectedScheme} handleReceived={handleReceived}/>
+            <Colors scheme={scheme} variation={variation} selectedScheme={selectedScheme}/>
           </div>  
         </main>
         <Settings handleScheme={handleScheme} handleVariation={handleVariation}/>
