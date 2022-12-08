@@ -9,7 +9,7 @@
     padding: .5rem 2rem 2rem 1rem;
     position: absolute;
     left: 0;
-    background-color: $second-bg-color;
+    background-color: var(--second-bg-color);
     text-align: left;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
@@ -75,7 +75,13 @@
       justify-content: center;
       align-items: center;
 
-      svg {
+      .theme-icon {
+        width: 50px;
+        height: 50px;
+        fill: var(--primary-color);
+        margin-right: 1rem;
+      }
+      .side-svg {
         width: 50px;
         height: 50px;
         z-index: 5;
@@ -85,13 +91,14 @@
         position: absolute;
         left: 1rem;
         margin: 0 1rem;
-        fill: $primary-color;
+        fill: var(--primary-color);
         cursor: pointer;
         &.close-btn {
           left: 13.3rem;
-          fill: $secondary-color;
+          fill: var(--primary-color);
         }
       }
+
 
       .page-title {
         flex: 1;

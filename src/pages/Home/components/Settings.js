@@ -3,7 +3,7 @@ export default function Settings({ handleScheme, handleVariation }) {
 
   return (
     <div className='settings-container'>
-      <h2>Settings</h2>
+      <h2 className="content-title">Settings</h2>
       <div className="setting-forms">
         <form onChange={handleScheme} className='form'>
           <p>Schemes</p>
