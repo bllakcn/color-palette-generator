@@ -9,16 +9,22 @@ function App() {
   const {theme} = useTheme()
 
   return (
-    <div className={`${theme}-mode App`}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<ColorPalette/>} path='/' />
-        </Routes>
-        <footer>
-        <a href="https://bilalakcan.netlify.app/" target="_blank"  rel="noreferrer"><span>Coded with ❤ by Bilal</span></a>
-        </footer>
-      </BrowserRouter>
-    </div>
+    <>
+    {theme && (
+      <div className={`${theme}-mode App`}>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<ColorPalette/>} path='/' />
+          </Routes>
+          <footer>
+            <a href="https://bilalakcan.netlify.app/" target="_blank"  rel="noreferrer">
+              <span>Coded with ❤ by Bilal</span>
+            </a>
+          </footer>
+        </BrowserRouter>
+      </div>
+    )}
+    </>
   );
 }
 

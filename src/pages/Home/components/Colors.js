@@ -73,8 +73,7 @@ export default function Colors({ scheme, variation, selectedScheme }) {
 
   //save the scheme to the localStorage
   const handleSave = () => {
-    localStorage.setItem(`scheme_${localStorage.length}`, JSON.stringify(colorPalette))
-    console.log(colorPalette)
+    localStorage.setItem(`scheme_${localStorage.length-1}`, JSON.stringify(colorPalette))
   }
   
   return (

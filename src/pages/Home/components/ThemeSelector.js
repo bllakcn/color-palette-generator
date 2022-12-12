@@ -1,12 +1,18 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useTheme } from '../../../hooks/useTheme'
 
 export default function ThemeSelector() {
+ 
   const {theme, setTheme} = useTheme()
 
   const toggleMode = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
   return (
     <div className={`${theme} theme-icon`} onClick={toggleMode}>
       {theme === "dark" ? 

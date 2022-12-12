@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Colors from './components/Colors'
 import Settings from './components/Settings'
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/SavedSchemes'
 import ThemeSelector from './components/ThemeSelector'
 import './ColorPalette.scss'
 
@@ -13,10 +13,18 @@ export default function ColorPalette() {
   const [selectedScheme, setSelectedScheme] = useState(null)
   let lengthOfStorage = localStorage.length
   
+
+  //toggle
+  const toggleSavedSchemes = () => {
+    setIsSavedSchemesOpen(curr => !curr)
+  }
   //open the selected saved scheme
   const handleSelectedScheme = (e) => {
     setSelectedScheme(e.target.parentNode.id)
     setIsSavedSchemesOpen(false)
+    setTimeout(() => {
+      setSelectedScheme(null)
+    }, 50)
   }
   //close the saved schemes tab when clicked outside
   const handleCloseSchemes = () => {
@@ -40,17 +48,13 @@ export default function ColorPalette() {
       setSavedSchemes(curr => [...curr, currentScheme])
     }
   }, [lengthOfStorage])
-  
+
   return (
     <div className='color-palette-container'>
-      {isSavedSchemesOpen && <Sidebar handleSelectedScheme={handleSelectedScheme} savedSchemes={savedSchemes}/>}
+      {isSavedSchemesOpen && <Sidebar handleSelectedScheme={handleSelectedScheme} savedSchemes={savedSchemes} toggleSavedSchemes={toggleSavedSchemes}/>}
       <div onClick={handleCloseSchemes} className='content-main'>
         <header>
-          {!isSavedSchemesOpen ? (
-            <svg className='side-svg' onClick={() => setIsSavedSchemesOpen(curr => !curr)} xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z"/></svg>
-          ) : (
-            <svg className='side-svg close-btn' onClick={() => setIsSavedSchemesOpen(curr => !curr)} xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg>
-          )}
+          <svg className='side-svg' onClick={toggleSavedSchemes} xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M6 46V11q0-1.2.9-2.1Q7.8 8 9 8h24q1.2 0 2.125.9t.925 2.1v35L21 39.65Zm3-4.55 12-5.15 12 5.15V11H9Zm30 .05V5H11.65V2H39q1.2 0 2.1.9.9.9.9 2.1v36.5ZM9 11h24-12Z"/></svg>  
           <h1 className='page-title'>Generate color palettes</h1>
           <ThemeSelector></ThemeSelector>
         </header>

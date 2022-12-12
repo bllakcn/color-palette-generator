@@ -93,7 +93,7 @@ $primary-dark-text-color: #e4e4e4;
 $primary-color:  #6b7e99;
 $primary-dark-color:  #e9e8f7;
 $secondary-color: #575c59;
-$secondary-dark-color: #c2c2c2;
+$secondary-dark-color: #a3a3a3;
 $tertiary-color: #6871bf;
 $tertiary-dark-color: #9fa6e2;
 
@@ -120,8 +120,8 @@ $themes: (
   light-mode: $primary-color
   ),
   secondary-color: (
-  dark-mode: $secondary-dark-color,
-  light-mode: $secondary-color
+  light-mode: $secondary-color,
+  dark-mode: $secondary-dark-color
   ),
   tertiary-color: (
   dark-mode: $tertiary-dark-color,
@@ -180,7 +180,7 @@ body{
 
 footer {
   padding-top: .2rem;
-  position: absolute;
+  position: fixed;
   left: 0.5rem;
   bottom: 0.5rem;
   opacity: 0.6;
