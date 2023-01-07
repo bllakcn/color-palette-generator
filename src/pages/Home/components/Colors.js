@@ -90,7 +90,7 @@ export default function Colors({ scheme, variation, selectedScheme }) {
         <button onClick={generateColors} className='btn'>Generate colors!</button>
         <span className='info'>or press <b>Space</b> to generate colors.</span>
         <span className='info'>Click on colors to copy to your clipboard.</span>
-        <button onClick={handleSave} className='btn'>Save the scheme!</button>
+        <button onClick={handleSave} className='save btn'>Save the scheme!</button>
       </div>
     </div>
   )
